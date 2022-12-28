@@ -1,0 +1,126 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '3.0.0'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'io.freefair.lombok' version '6.6'
+    id 'nu.studer.jooq' version '8.0'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+    implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+    implementation 'org.springframework.boot:spring-boot-starter-webflux'
+    implementation 'org.springframework.boot:spring-boot-starter-jooq'
+    implementation 'org.postgresql:postgresql:42.5.0'
+    jooqGenerator 'org.postgresql:postgresql:42.5.0'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'io.projectreactor:reactor-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+jooq {
+    version = '3.17.0'
+
+    configurations {
+        main {
+            generateSchemaSourceOnCompilation = true
+            generationTool {
+                jdbc {
+                    driver = 'org.postgresql.Driver'
+                    url = 'jdbc:postgresql://localhost:5433/postgres'
+                    user = 'postgres'
+                    password = 'postgres'
+                }
+                generator {
+                    name = 'org.jooq.codegen.DefaultGenerator'
+                    database {
+                        name = 'org.jooq.meta.postgres.PostgresDatabase'
+                        inputSchema = 'public'
+                        includes = '(employee|company|contact|employee_contact)'
+                        customTypes{
+                            customType{
+                                name = 'EmployeeGenderConverter'
+                                converter = 'com.example.jooq.EmployeeGenderConverter'
+                                type = 'com.example.model.Gender'
+                            }
+                            customType{
+                                name = 'PhoneTypeConverter'
+                                converter = 'com.example.jooq.PhoneTypeConverter'
+                                type = 'com.example.model.PhoneType'
+                            }
+                        }
+                        forcedTypes {
+                            forcedType {
+                                name = 'EmployeeGenderConverter'
+                                expression = '.*employee\\.gender'
+                                types = '.*'
+                            }
+                            forcedType {
+                                name = 'PhoneTypeConverter'
+                                expression = '.*contact\\.type'
+                                types = '.*'
+                            }
+                        }
+                    }
+                    generate {
+                        deprecated = false
+                        records = true
+                        immutablePojos = true
+                        fluentSetters = true
+                    }
+                    target {
+                        packageName = 'nu.studer.sample'
+                        directory = 'build/generated-src/jooq/main'
+                    }
+                    strategy.name = 'org.jooq.codegen.DefaultGeneratorStrategy'
+                }
+            }
+        }
+    }
+}
+
+//task codeGen {
+//    doLast {
+//        println 'Generation JOOQ code'
+//        def writer = new StringWriter()
+//        def xml = new groovy.xml.MarkupBuilder(writer)
+//                .configuration('xmlns': 'http://www.jooq.org/xsd/jooq-codegen-3.16.5.xsd') {
+//                    jdbc() {
+//                        driver('org.postgresql.Driver')
+//                        url('jdbc:postgresql://localhost:5433/postgres')
+//                        user('postgres')
+//                        password('postgres')
+//                    }
+//                    generator() {
+//                        database {
+//                            inputSchema('public')
+//                            includes('.*')
+//                        }
+//                        generate([:]) {
+//                            deprecated false
+//                            records true
+//                            immutablePojos true
+//                            fluentSetters true
+//                        }
+//                        target() {
+//                            packageName('nu.studer.sample')
+//                            directory('build/generated-src/jooq/main')
+//                        }
+//                    }
+//                }
+//        GenerationTool.generate(writer.toString())
+//        println 'JOOQ code generated successfully'
+//    }
+//}
