@@ -1,6 +1,6 @@
 package com.example.patternsspring.service;
 
-import com.example.patternsspring.pattern.command.notification.Notification;
+import com.example.patternsspring.pattern.strategy.Notification;
 import com.example.patternsspring.model.NotificationInfo;
 import com.example.patternsspring.model.NotificationType;
 import lombok.RequiredArgsConstructor;

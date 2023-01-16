@@ -1,6 +1,6 @@
 package com.example.patternsspring.config;
 
-import com.example.patternsspring.pattern.command.notification.Notification;
+import com.example.patternsspring.pattern.strategy.Notification;
 import com.example.patternsspring.pattern.factory_method.DocumentService;
 import com.example.patternsspring.service.DefaultNotificationService;
 import com.example.patternsspring.service.NotificationService;

@@ -2,3 +2,5 @@ rootProject.name = 'patterns-spring'
 
 include 'jooq-postgres-example'
 include 'pattern-spring'
+include 'behavior-pattern'
+include 'other-pattern'
