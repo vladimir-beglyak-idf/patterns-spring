@@ -1,8 +1,8 @@
 package com.example.strategy.developer;
 
-public class EatingActivity implements Activity{
+public class Reading implements Activity{
     @Override
     public String doAction() {
-        return "Eating...";
+        return "Reading...";
     }
 }
