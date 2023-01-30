@@ -2,7 +2,7 @@ package com.example.memento;
 
 import java.util.Date;
 
-public class Save {
+public class Save { //это и есть хранитель
     private final String version;
     private final Date date;
 

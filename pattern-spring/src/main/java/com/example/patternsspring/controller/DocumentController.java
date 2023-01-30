@@ -1,7 +1,7 @@
 package com.example.patternsspring.controller;
 
-import com.example.patternsspring.pattern.factory_method.DocumentService;
-import com.example.patternsspring.pattern.factory_method.DocumentType;
+import com.example.patternsspring.pattern.factory_method.document.DocumentService;
+import com.example.patternsspring.pattern.factory_method.document.DocumentType;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
 import org.springframework.core.io.InputStreamResource;

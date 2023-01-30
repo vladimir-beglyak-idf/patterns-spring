@@ -1,4 +1,4 @@
-package com.example.patternsspring.pattern.factory_method;
+package com.example.patternsspring.pattern.factory_method.document;
 
 import lombok.SneakyThrows;
 

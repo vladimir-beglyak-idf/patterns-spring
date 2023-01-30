@@ -1,6 +1,6 @@
 package com.example.patternsspring.config;
 
-import com.example.patternsspring.pattern.factory_method.*;
+import com.example.patternsspring.pattern.factory_method.document.*;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

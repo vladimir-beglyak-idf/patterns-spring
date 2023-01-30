@@ -1,9 +1,9 @@
-package com.example.patternsspring.pattern.factory_method.pdf;
+package com.example.patternsspring.pattern.factory_method.document.pdf;
 
-import com.example.patternsspring.pattern.factory_method.AbstractDocument;
-import com.example.patternsspring.pattern.factory_method.DocumentDao;
-import com.example.patternsspring.pattern.factory_method.DocumentType;
-import com.example.patternsspring.pattern.factory_method.Printer;
+import com.example.patternsspring.pattern.factory_method.document.AbstractDocument;
+import com.example.patternsspring.pattern.factory_method.document.DocumentDao;
+import com.example.patternsspring.pattern.factory_method.document.DocumentType;
+import com.example.patternsspring.pattern.factory_method.document.Printer;
 import lombok.SneakyThrows;
 
 import java.io.File;

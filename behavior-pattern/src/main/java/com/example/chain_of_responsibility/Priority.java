@@ -1,7 +1,14 @@
 package com.example.chain_of_responsibility;
 
-public class Priority {
-    public static final int ROUTINE = 1;
-    public static final int IMPORTANT = 2;
-    public static final int ASAP = 3;
+public enum Priority {
+    ROUTINE(1), IMPORTANT(2), ASAP(3);
+    private final int value;
+
+    Priority(int value) {
+        this.value = value;
+    }
+
+    public int getValue() {
+        return value;
+    }
 }

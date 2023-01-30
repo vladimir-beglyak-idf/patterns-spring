@@ -1,7 +1,7 @@
-package com.example.patternsspring.pattern.factory_method.pdf;
+package com.example.patternsspring.pattern.factory_method.document.excel;
 
-import com.example.patternsspring.pattern.factory_method.DocumentGenerator;
-import com.example.patternsspring.pattern.factory_method.DocumentType;
+import com.example.patternsspring.pattern.factory_method.document.DocumentGenerator;
+import com.example.patternsspring.pattern.factory_method.document.DocumentType;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 
@@ -11,12 +11,11 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 
 @Component
-public class PdfGenerator implements DocumentGenerator {
+public class ExcelGenerator implements DocumentGenerator {
     @Override
     @SneakyThrows
     public File generate(String data, DocumentType type) {
-        Files.write(Path.of("/", createFileNameAndExtension("test-pdf", type)), "Hello world!".getBytes(), StandardOpenOption.CREATE_NEW);
-        return new File("report.pdf");
+        return Files.write(Path.of("/", createFileNameAndExtension("test-excel", type)), "Hello world!".getBytes(), StandardOpenOption.CREATE_NEW).toFile();
     }
 
     public String createFileNameAndExtension(String name, DocumentType type) {

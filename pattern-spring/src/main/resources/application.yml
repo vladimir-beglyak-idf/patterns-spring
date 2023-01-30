@@ -1,5 +1,5 @@
 server:
-  port: 8889
+  port: 8090
 spring:
   r2dbc:
     url: r2dbc:postgresql://localhost:5433/postgres
