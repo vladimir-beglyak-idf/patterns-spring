@@ -5,18 +5,20 @@ import java.util.Map;
 
 public final class RemoveStrategyHolder {
 
-    private static final Map<RemoveType, RemoveStrategy> removeStrategyMap = new HashMap<>();
+  private static final Map<RemoveType, RemoveStrategy> removeStrategyMap = new HashMap<>();
 
-    private RemoveStrategyHolder() {
+  private RemoveStrategyHolder() {
 
-    }
+  }
 
-    static {
-        removeStrategyMap.put(RemoveType.NUMBER, new NumberRemover());
-        removeStrategyMap.put(RemoveType.WHITE_SPACE, new WhitespaceRemover());
-    }
+  static {
+    NumberRemover numberRemover = new NumberRemover();
+    removeStrategyMap.put(RemoveType.NUMBER, numberRemover);
+    WhitespaceRemover whitespaceRemover = new WhitespaceRemover();
+    removeStrategyMap.put(RemoveType.WHITE_SPACE, whitespaceRemover);
+  }
 
-    public static RemoveStrategy get(RemoveType removeType) {
-        return removeStrategyMap.get(removeType);
-    }
+  public static RemoveStrategy get(RemoveType removeType) {
+    return removeStrategyMap.get(removeType);
+  }
 }

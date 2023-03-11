@@ -1,11 +1,12 @@
 package com.example.strategy.remover;
 
 public final class Remover {
-    private Remover() {
 
-    }
+  private Remover() {
 
-    public static String remove(String input, RemoveStrategy removeStrategy) {
-        return removeStrategy.execute(input);
-    }
+  }
+
+  public static String remove(String input, RemoveStrategy removeStrategy) {
+    return removeStrategy.execute(input);
+  }
 }
