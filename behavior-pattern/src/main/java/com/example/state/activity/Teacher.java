@@ -1,4 +1,4 @@
-package com.example.state;
+package com.example.state.activity;
 
 public class Teacher {
     private Activity activity;
